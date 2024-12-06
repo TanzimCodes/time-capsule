@@ -1,0 +1,29 @@
+
+services:
+  app:
+    build: .         
+      # Build the app from the Dockerfile in the 'app' directory
+    ports:
+      - "5000:8080"             # Map port 8080 inside the container to port 5000 on the host
+    # environment:
+    #   - DB_CONNECTION_STRING=Server=sqlserver;Database=cs444;User=sa;Password=Test1234;
+    # depends_on:
+    #   - sqlserver               # This ensures the app starts after sqlserver
+    # networks:
+    #   - app-network             # Use a custom network for communication between 
+
+  # sqlserver:
+  #   image: mcr.microsoft.com/mssql/server:2022-latest   # Pull the pre-built SQL Server image
+  #   container_name: sqlserver
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=Test1234
+  #   ports:
+  #     - "1433:1433"             # Expose SQL Server port on the host machine
+  #   networks:
+  #     - app-network             # Use the same custom network for communication
+
+
+# networks:
+#   app-network:                  # Define a custom network for communication
+#     driver: bridge

@@ -21,28 +21,6 @@ namespace api.Controllers
             _context = context;
         }
 
- [HttpPost]
-        public async Task<IActionResult> CreateTimeCapsule([FromBody] CreateTimeCapsul dto)
-        {
-            var userId = GetUserIdFromToken(); // Get logged-in user's ID
-
-            var capsule = new TimeCapsule
-            {
-                Title = dto.Title,
-                Message = dto.Message,
-                FileUrl = dto.FileUrl ?? "",
-                ScheduledDelivery = dto.ScheduledDelivery,
-                UserId = userId
-            };
-
-            _context.TimeCapsules.Add(capsule);
-            await _context.SaveChangesAsync();
-
-            return Ok("Time capsule created successfully.");
-        }
-
-
-
         [HttpPost]
         public async Task<IActionResult> CreateTimeCapsule([FromBody] CreateTimeCapsul dto)
         {

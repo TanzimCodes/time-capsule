@@ -1,6 +1,7 @@
 using System.Text;
 using api.Data;
 using api.Repository;
+using api.Service;
 using api.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +42,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddScoped<ITimeCapsuleRepository, TimeCapsuleRepository>();
+builder.Services.AddScoped<ITimeCapsuleService, TimeCapsuleService>();
+
+
 builder.Services.AddTransient<JwtTokenService>();  // Register JwtTokenService
 
 var app = builder.Build();

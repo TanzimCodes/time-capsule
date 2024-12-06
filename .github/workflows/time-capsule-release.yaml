@@ -40,3 +40,8 @@ jobs:
       run: |
         docker tag tanzim3421/time-capsule:${{ github.sha }} tanzim3421/time-capsule:latest
         docker push tanzim3421/time-capsule:latest
+ 
+ # Step 6: Call the webhook to notify the EC2 instance
+    - name: Call webhook
+      run: |
+        curl -X POST http://ec2-54-146-188-181.compute-1.amazonaws.com/

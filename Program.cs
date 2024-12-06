@@ -58,6 +58,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Map HTTP GET route to a handler
-app.MapGet("/", () => "YO, from github actions");
+app.MapGet("/", () => "YO, Full workflow in action");
 
 app.Run();

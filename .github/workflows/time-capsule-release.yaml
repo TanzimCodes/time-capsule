@@ -14,34 +14,34 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Step 2: Set up Docker Buildx (optional but recommended for multi-platform builds)
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+    # # Step 2: Set up Docker Buildx (optional but recommended for multi-platform builds)
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v2
 
-    # Step 3: Log in to Docker Hub using the Docker access token
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: tanzim3421
-        password: ${{ secrets.DOCKER_PASSWORD }}  # GitHub secret for your Docker access token
+    # # Step 3: Log in to Docker Hub using the Docker access token
+    # - name: Log in to Docker Hub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: tanzim3421
+    #     password: ${{ secrets.DOCKER_PASSWORD }}  # GitHub secret for your Docker access token
 
-    # Step 4: Build the Docker image
-    - name: Build Docker image
-      run: |
-        docker build -t tanzim3421/time-capsule:${{ github.sha }} .
+    # # Step 4: Build the Docker image
+    # - name: Build Docker image
+    #   run: |
+    #     docker build -t tanzim3421/time-capsule:${{ github.sha }} .
 
-    # Step 5: Push the Docker image to the Docker repository
-    - name: Push Docker image
-      run: |
-        docker push tanzim3421/time-capsule:${{ github.sha }}
+    # # Step 5: Push the Docker image to the Docker repository
+    # - name: Push Docker image
+    #   run: |
+    #     docker push tanzim3421/time-capsule:${{ github.sha }}
 
-    # Optional: Tag the image with 'latest' or another tag if required
-    - name: Push latest tag
-      run: |
-        docker tag tanzim3421/time-capsule:${{ github.sha }} tanzim3421/time-capsule:latest
-        docker push tanzim3421/time-capsule:latest
+    # # Optional: Tag the image with 'latest' or another tag if required
+    # - name: Push latest tag
+    #   run: |
+    #     docker tag tanzim3421/time-capsule:${{ github.sha }} tanzim3421/time-capsule:latest
+    #     docker push tanzim3421/time-capsule:latest
  
- # Step 6: Call the webhook to notify the EC2 instance
-    - name: Call webhook
+    # Step 6: Call the webhook with a GET request
+    - name: Call webhook with GET
       run: |
-        curl -X POST http://ec2-54-146-188-181.compute-1.amazonaws.com/
+        curl https://pn6onq3117.execute-api.us-east-1.amazonaws.com/dev/execute-command
